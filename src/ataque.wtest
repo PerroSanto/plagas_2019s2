@@ -1,0 +1,45 @@
+import elementos.*
+import plagas.*
+
+
+test "test de Ataque" {
+
+
+	const casa = new Hogar(confort = 20 ) 
+	const huerta = new Huerta(capacidad = 200, nivel = 0) 
+	const boby = new Mascota(salud = 360) 
+	const fidulais = new Mascota(salud = 420)
+	const patitasShuaves = new Mascota(salud = 300) 
+	
+	const  blattodea = new Cucarachas(pesoPromedio = 10, poblacion = 30)
+	const ectobiidae = new Cucarachas(pesoPromedio = 8, poblacion = 20)
+	const aedes = new Mosquitos(poblacion = 36)
+	const siphonaptera = new Pulgas(poblacion = 10)
+	const ixodoidea = new Garrapatas(poblacion = 10)
+	
+	blattodea.atacarElemento(casa)
+	assert.equals(12,blattodea.pesoPromedio()) //antes 10
+	assert.equals(33,blattodea.poblacion()) //antes 30
+	assert.equals(15,casa.mugre()) //antes 0
+	
+	ectobiidae.atacarElemento(huerta)
+	assert.equals(10,ectobiidae.pesoPromedio()) //antes 8
+	assert.equals(22,ectobiidae.poblacion()) //antes 20
+	assert.equals(199,huerta.capacidad()) //antes 200
+
+	aedes.atacarElemento(boby)
+	assert.equals(39.6,aedes.poblacion()) //antes 36
+	assert.equals(324,boby.salud()) //antes 360
+	aedes.atacarElemento(boby)
+	assert.equals(43.56,aedes.poblacion()) //antes 39.6
+	assert.equals(324,boby.salud()) //antes 324
+
+	siphonaptera.atacarElemento(fidulais)
+	assert.equals(11,siphonaptera.poblacion()) //antes 10
+	assert.equals(400,fidulais.salud()) //antes 420
+
+	ixodoidea.atacarElemento(patitasShuaves)
+	assert.equals(12,ixodoidea.poblacion()) //antes 10
+	assert.equals(280,patitasShuaves.salud()) //antes 300
+	}
+	

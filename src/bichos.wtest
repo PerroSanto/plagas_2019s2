@@ -1,0 +1,32 @@
+import elementos.*
+import plagas.*
+
+test "test de Bichos" {
+	const  blattodea = new Cucarachas(pesoPromedio = 8, poblacion = 30)
+	const aedes = new Mosquitos(poblacion = 30)
+	const siphonaptera = new Pulgas(poblacion = 10)
+	const ixodoidea = new Garrapatas(poblacion = 20)
+	
+	assert.notThat(blattodea.transmiteEnfermedades())
+	blattodea.pesoPromedio(10)
+	assert.that(blattodea.transmiteEnfermedades())
+	blattodea.poblacion(5)
+	assert.notThat(blattodea.transmiteEnfermedades())
+	assert.equals(2.5,blattodea.danio())
+	assert.that(siphonaptera.transmiteEnfermedades())
+	siphonaptera.poblacion(9)
+	assert.equals(9,siphonaptera.poblacion())
+	assert.notThat(siphonaptera.transmiteEnfermedades())
+	assert.equals(18,siphonaptera.danio())
+	assert.that(ixodoidea.transmiteEnfermedades())
+	assert.equals(40,ixodoidea.danio())
+	ixodoidea.poblacion(8)
+	assert.equals(16,ixodoidea.danio())
+	assert.notThat(ixodoidea.transmiteEnfermedades())
+	assert.that(aedes.transmiteEnfermedades())
+	assert.equals(30,aedes.danio())
+	aedes.poblacion(5)
+	assert.equals(5,aedes.danio())
+	assert.notThat(aedes.transmiteEnfermedades())
+
+}

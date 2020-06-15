@@ -1,0 +1,25 @@
+import elementos.*
+import plagas.*
+
+
+test "esCopado" {
+	const villaGermana = new Barrio()
+	const casa1 = new Hogar(confort = 20 ) //esBuena = true
+	const casa2 = new Hogar(confort = 20 , mugre = 10) //esBuena = true 
+	const huerta1 = new Huerta(capacidad = 100, nivel = 101) //esBuena = false 
+	const huerta2 = new Huerta(capacidad = 200, nivel = 0) //esBuena = true 
+	const boby = new Mascota(salud = 300) //esBuena = true
+	const fidulais = new Mascota(salud = 250) //esBuena = false 
+	const patitasShuaves = new Mascota(salud = 100) //esBuena = false
+	
+	villaGermana.elementos().add(casa1)
+	villaGermana.elementos().add(casa2)
+	villaGermana.elementos().add(huerta1)
+	villaGermana.elementos().add(huerta2)
+	villaGermana.elementos().add(boby)
+	villaGermana.elementos().add(fidulais)
+	villaGermana.elementos().add(patitasShuaves)
+	assert.that(villaGermana.esCopado())
+	casa2.mugre(45) //esBuena = false
+	assert.notThat(villaGermana.esCopado())
+}
